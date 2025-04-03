@@ -1,5 +1,4 @@
-﻿using SQLite;
-using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
+﻿using SQLite; // Se estiver utilizando SQLite, mantenha essa importação.
 
 namespace MauiAppMinhasCompras.Models
 {
@@ -15,9 +14,9 @@ namespace MauiAppMinhasCompras.Models
             get => _descricao;
             set
             {
-                if (value == null)
+                if (string.IsNullOrWhiteSpace(value)) // Verifica se a descrição está nula ou em branco.
                 {
-                    throw new Exception("Por favor, preencha a descrição.");
+                    throw new ArgumentNullException(nameof(Descricao), "Por favor, preencha a descrição.");
                 }
                 _descricao = value;
             }
